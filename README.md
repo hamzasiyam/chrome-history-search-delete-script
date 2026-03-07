@@ -18,7 +18,7 @@ You search for a keyword in the history search box (e.g., `youtube.com` or `redd
 
 4. Click the **Console** tab in that panel. The Console is where you enter and run JavaScript.
 
-5. Open the file `copy-this.js`, select all the text, and copy it (Ctrl+C).
+5. Open the file `select-history-items.js`, select all the text, and copy it (Ctrl+C).
 
 6. Click inside the Console, paste the code (Ctrl+V), and press **Enter**.
 
@@ -39,7 +39,8 @@ You search for a keyword in the history search box (e.g., `youtube.com` or `redd
 
 ---
 
-## Definitions
+<details>
+<summary><strong>Definitions</strong> (click to expand)</summary>
 
 **DOM (Document Object Model)**  
 The DOM is the structure of a webpage. When the browser loads HTML, it builds a tree of objects. Each object represents an element on the page (a heading, a paragraph, a button, etc.). JavaScript can read and modify these objects to change what the page shows or how it behaves.
@@ -92,6 +93,8 @@ A programming language. Browsers can execute JavaScript. The script is written i
 **.js file extension**  
 The `.js` extension indicates that the file contains JavaScript source code. It is the standard extension for JavaScript files. The script is meant to be copied into the Console, not run as a file, but `.js` correctly identifies the file's contents as JavaScript.
 
+</details>
+
 ---
 
 ## Things to Keep in Mind
@@ -106,9 +109,17 @@ The `.js` extension indicates that the file contains JavaScript source code. It 
 
 ```
 Chrome-Console-Log-Clear/
-├── copy-this.js   The JavaScript code to paste into the Console
-└── README.md      This file (the instructions)
+├── select-history-items.js   The JavaScript code to paste into the Console
+└── README.md                 This file (the instructions)
 ```
+
+---
+
+## Development
+
+This project was developed using the Cursor Composer 1.5 agent, with each stage reviewed by a human to ensure functionality and correctness.
+
+For issues, bugs, or contributions, please contact the repository maintainer: [https://github.com/hamzasiyam](https://github.com/hamzasiyam).
 
 ---
 
