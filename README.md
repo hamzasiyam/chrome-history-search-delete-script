@@ -1,21 +1,6 @@
-# Chrome History — Bulk Delete by Keyword
+# Chrome History Bulk Delete
 
-A lightweight JavaScript script that lets you **delete specific search items in bulk** on Chrome's history page. Search for a keyword, run the script, and remove all matching entries with one click instead of selecting each item manually.
-
----
-
-## Table of Contents
-
-- [Project Description](#project-description)
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [How It Works](#how-it-works)
-- [Things to Keep in Mind](#things-to-keep-in-mind)
-- [Project Structure](#project-structure)
-- [Contributing](#contributing)
-- [Credits](#credits)
-- [License](#license)
+A lightweight JavaScript script that lets you **select and delete specific search results in bulk** on Chrome's History page (`chrome://history`). No more clicking each checkbox one by one.
 
 ---
 
@@ -23,29 +8,31 @@ A lightweight JavaScript script that lets you **delete specific search items in 
 
 ### What It Does
 
-The script selects every history item currently visible on the Chrome history page by programmatically clicking each item's checkbox. After it runs, you click the Delete button once to remove all selected items.
+This script runs in the Chrome Developer Tools console. After you search for a keyword on the History page, it automatically selects all matching history items so you can delete them in one click.
 
-### Motivation & Problem
+### Motivation
 
-Manually selecting dozens or hundreds of history entries is tedious. This tool solves that by letting you:
+Manually selecting dozens or hundreds of history entries is tedious. This tool removes that friction and gives you better control over your browsing data—helping you clear items you don't want others to see.
 
-- **Search** for a keyword (e.g., `youtube.com`, `reddit`, or any term) in Chrome's history search box
-- **Select all** matching entries at once with the script
-- **Delete** them in one action
+### Problem It Solves
 
-It also helps you control your data and remove items from your feed that you don't want others to see.
+- **Tedious selection:** Avoid clicking every checkbox individually when cleaning up history.
+- **Data control:** Quickly remove sensitive or unwanted entries from your feed.
+- **Time savings:** Bulk operations instead of repetitive manual steps.
 
 ### Technologies Used
 
-- **Vanilla JavaScript** — No frameworks, build tools, or dependencies. The script runs directly in Chrome's DevTools Console.
+- **JavaScript** (vanilla, no dependencies)
+- **Chrome DevTools Console** (no installation required)
+- **Chrome's internal Shadow DOM** (`history-app`, `history-list`, `history-item`, `cr-checkbox`)
 
 ### Challenges Faced
 
-The main challenge was **finding the correct internal structure** of Chrome's history page. Chrome uses Shadow DOM and custom elements (`history-app`, `history-list`, `history-item`, `cr-checkbox`), which are not exposed in the main document. The script navigates these nested Shadow DOM trees to reach the checkboxes.
+The main challenge was **finding the correct internal structure** of Chrome's History page. The UI is built with Web Components and Shadow DOM, so the script had to traverse `history-app` → `history-list` → `history-item` and their respective `shadowRoot`s to reach the checkboxes.
 
 ### Possible Future Improvements
 
-- One-click button to run the script without opening DevTools
+- One-click delete button (select and delete in a single action)
 - Chrome extension for easier access
 - Integration with a script library extension for Chrome
 
@@ -53,26 +40,26 @@ The main challenge was **finding the correct internal structure** of Chrome's hi
 
 ## Features
 
-- **Bulk selection by keyword** — Search for a term, run the script, and select all visible matching entries
-- **No installation** — Copy and paste into the Console; no extensions or downloads required
-- **Lightweight** — Plain JavaScript, no dependencies
-- **Privacy-focused** — Helps you remove unwanted history entries from your feed
+- **Bulk selection:** Select all search results with one script run
+- **No installation:** Copy, paste, and run in the console
+- **Zero dependencies:** Plain JavaScript only
+- **Progress feedback:** Console logs show how many items were selected
 
 ---
 
 ## Installation
 
-No installation is required. The script runs directly in Chrome's built-in DevTools Console.
+No installation is required. The script runs directly in the Chrome browser.
 
-**Requirements:**
+### Prerequisites
 
-- Google Chrome browser
-- No dependencies
+- **Google Chrome** (or any Chromium-based browser)
+- Access to `chrome://history`
 
-**Setup:**
+### Setup
 
-1. Clone or download this repository
-2. Open the file `select-history-items.js` — you will copy its contents into the Console
+1. Clone or download this repository.
+2. Open the `select-history-items.js` file and copy its contents.
 
 ---
 
@@ -80,120 +67,56 @@ No installation is required. The script runs directly in Chrome's built-in DevTo
 
 ### Step-by-Step Instructions
 
-1. Open Chrome and type **`chrome://history`** in the address bar, then press Enter.
-
-2. In the search box on that page, type the word or site you want to remove (e.g., `youtube.com`, `reddit`, or any term). Chrome will display only the history entries that match.
-
-3. Press **F12** to open Chrome DevTools. A panel opens at the bottom or side of the window.
-
-4. Click the **Console** tab in that panel.
-
-5. Open the file `select-history-items.js`, select all the text, and copy it (Ctrl+C).
-
-6. Click inside the Console, paste the code (Ctrl+V), and press **Enter**.
-
-7. The script executes. Every history item on the page is now selected (its checkbox is checked).
-
-8. Click the **Delete** button on the history page to remove the selected items.
+1. Open Chrome and go to **`chrome://history`**.
+2. Use the search bar to filter history by keyword (e.g., `cvs`, `youtube`, `login`).
+3. Press **F12** (or right-click → Inspect) to open Developer Tools.
+4. Go to the **Console** tab.
+5. Paste the script and press **Enter**.
+6. Return to the History page and click the **Delete** button to remove the selected items.
 
 ### Example Workflow
 
 ```
-Search: "youtube.com" → Run script → Click Delete → All YouTube entries removed
+1. Search "cvs" on chrome://history
+2. Paste script in Console (F12) → Enter
+3. Script selects all 9 matching items
+4. Click "Delete" on the History page
+5. Done!
 ```
 
 ### Screenshots
 
-**Before** — History items unselected:
+**Before:** History page with search results—no items selected yet.
 
 ![Before running the script](images/before.png)
 
-**After** — All matching items selected (ready to delete):
+**After:** All matching items are selected; click Delete to remove them.
 
 ![After running the script](images/after.png)
 
 ---
 
-## How It Works
-
-1. Finds the `history-app` element in the page's DOM
-2. Accesses that element's Shadow DOM via `shadowRoot` to reach the elements inside it
-3. Finds the `history-list` element inside the app's Shadow DOM
-4. Accesses the list's Shadow DOM to reach the `history-item` elements
-5. Loops through each `history-item`, accesses each item's Shadow DOM, finds the `cr-checkbox` element, and calls `click()` on it if it is not already checked
-6. After the script finishes, all visible history items are selected. You then click Delete to remove them
-
-<details>
-<summary><strong>Definitions</strong> (click to expand)</summary>
-
-**DOM (Document Object Model)**  
-The structure of a webpage. When the browser loads HTML, it builds a tree of objects. Each object represents an element on the page. JavaScript can read and modify these objects to change what the page shows or how it behaves.
-
-**Shadow DOM**  
-A web standard that lets you attach a separate DOM tree to an element. That tree is encapsulated and not directly visible when you query the main document. Chrome's history page uses Shadow DOM for its UI components. To work with elements inside Shadow DOM, you must first get the element that hosts it, then use its `shadowRoot` property.
-
-**shadowRoot**  
-A property on an element. If that element has a Shadow DOM attached, `shadowRoot` returns the root node of that Shadow DOM tree. You use it to query and manipulate elements inside the Shadow DOM.
-
-**history-app**  
-A custom element used on Chrome's history page. It is the root container for the history interface. The rest of the history UI lives inside its Shadow DOM.
-
-**history-list**  
-A custom element that holds the list of history entries. It is inside the Shadow DOM of `history-app`.
-
-**history-item**  
-A custom element. Each one represents a single browsing history entry. Multiple `history-item` elements are inside the Shadow DOM of `history-list`.
-
-**cr-checkbox**  
-A custom checkbox element used by Chrome's internal UI. On the history page, each `history-item` contains a `cr-checkbox`. Clicking it selects or deselects that history entry.
-
-</details>
-
----
-
-## Things to Keep in Mind
-
-- The script selects only the items **currently visible** on the page. If your search returns many results across multiple pages, you may need to scroll or go to the next page and run the script again.
-- If Chrome changes the structure of its history page in a future update, the script may stop working and would need to be updated.
-- Use this only on your own browser and device.
-
----
-
-## Project Structure
-
-```
-Chrome-Console-Log-Clear/
-├── select-history-items.js   # JavaScript code to paste into the Console
-├── images/
-│   ├── before.png            # Screenshot before running the script
-│   └── after.png             # Screenshot after running the script
-├── README.md                 # This file
-└── LICENSE                   # MIT License
-```
-
----
-
 ## Contributing
 
-Contributions are welcome. If you'd like to contribute:
+Contributions are welcome. Feel free to:
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/your-feature`)
-3. Commit your changes (`git commit -m 'Add some feature'`)
-4. Push to the branch (`git push origin feature/your-feature`)
-5. Open a Pull Request
-
-For bugs, feature requests, or questions, please [open an issue](https://github.com/hamzasiyam/Chrome-Console-Log-Clear/issues) or contact the maintainer: [@hamzasiyam](https://github.com/hamzasiyam).
+- Open issues for bugs or feature requests
+- Submit pull requests with improvements
+- Suggest ideas for future enhancements
 
 ---
 
 ## Credits
 
-- **Development** — This project was developed using [Cursor Composer 1.5](https://cursor.com), with each stage reviewed by a human to ensure functionality and correctness.
-- **README Guide** — Structure inspired by the freeCodeCamp article [How to Write a Good README File for Your GitHub Project](https://www.freecodecamp.org/news/how-to-write-a-good-readme-file/).
+- **Built with:** [Cursor Composer 1.5](https://cursor.com/)
+- **README guide:** [How to Write a Good README File for Your GitHub Project](https://www.freecodecamp.org/news/how-to-write-a-good-readme-file/) (freeCodeCamp)
 
 ---
 
 ## License
 
-This project is licensed under the **MIT License** — you are free to use, modify, and distribute it for personal or commercial use. See the [LICENSE](LICENSE) file for details.
+This project is open source and available for anyone to use and modify. See the [LICENSE](LICENSE) file for details.
+
+---
+
+*Inspired by the need to clean up Chrome history without the hassle of manual selection.*
