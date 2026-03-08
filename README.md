@@ -106,3 +106,4 @@ All AI-generated content was reviewed, tested, and modified by the author before
 
 The author remains fully responsible for the design, implementation, and correctness of the final code.
 
+**Further reading:** [Notes on HITL](images/Notes%20on%20HITL.pdf) — Notes on AI and human-in-the-loop concepts.
