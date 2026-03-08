@@ -54,16 +54,6 @@ No installation is required. The script runs directly in the Chrome browser.
 5. Paste the script and press **Enter**.
 6. Return to the History page and click the **Delete** button to remove the selected items.
 
-### Example Workflow
-
-```
-1. Search "cvs" on chrome://history
-2. Paste script in Console (F12) → Enter
-3. Script selects all 9 matching items
-4. Click "Delete" on the History page
-5. Done!
-```
-
 ### Screenshots
 
 **Before:** History page with search results—no items selected yet.
