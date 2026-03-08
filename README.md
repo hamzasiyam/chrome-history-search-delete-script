@@ -24,7 +24,6 @@ Manually selecting dozens or hundreds of history entries is tedious. This tool r
 
 - **JavaScript** (vanilla, no dependencies)
 - **Chrome DevTools Console** (no installation required)
-- **Chrome's internal Shadow DOM** (`history-app`, `history-list`, `history-item`, `cr-checkbox`)
 
 ### Challenges Faced
 
@@ -38,30 +37,11 @@ The main challenge was **finding the correct internal structure** of Chrome's Hi
 
 ---
 
-## Features
-
-- **Bulk selection:** Select all search results with one script run
-- **No installation:** Copy, paste, and run in the console
-- **Zero dependencies:** Plain JavaScript only
-- **Progress feedback:** Console logs show how many items were selected
-
----
 
 ## Installation
 
 No installation is required. The script runs directly in the Chrome browser.
 
-### Prerequisites
-
-- **Google Chrome** (or any Chromium-based browser)
-- Access to `chrome://history`
-
-### Setup
-
-1. Clone or download this repository.
-2. Open the `select-history-items.js` file and copy its contents.
-
----
 
 ## Usage
 
@@ -102,7 +82,6 @@ Contributions are welcome. Feel free to:
 
 - Open issues for bugs or feature requests
 - Submit pull requests with improvements
-- Suggest ideas for future enhancements
 
 ---
 
@@ -119,4 +98,11 @@ This project is open source and available for anyone to use and modify. See the 
 
 ---
 
-*Inspired by the need to clean up Chrome history without the hassle of manual selection.*
+## AI Assistance Disclosure
+
+This project was developed with the assistance of AI tools. AI was used to help generate code suggestions, documentation, and implementation ideas.
+
+All AI-generated content was reviewed, tested, and modified by the author before being included in this repository. The author maintained a human-in-the-loop (HITL) workflow, meaning that AI outputs were treated as suggestions and not accepted without verification.
+
+The author remains fully responsible for the design, implementation, and correctness of the final code.
+
