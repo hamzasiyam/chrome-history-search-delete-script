@@ -77,7 +77,7 @@ Contributions are welcome. Feel free to:
 
 ## Credits
 
-- **Built with:** [Cursor Composer 1.5](https://cursor.com/)
+- **Built with the help of:** [Cursor Composer 1.5](https://cursor.com/)
 - **README guide:** [How to Write a Good README File for Your GitHub Project](https://www.freecodecamp.org/news/how-to-write-a-good-readme-file/) (freeCodeCamp)
 
 ---
