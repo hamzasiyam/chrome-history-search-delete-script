@@ -105,5 +105,3 @@ This project was developed with the assistance of AI tools. AI was used to help 
 All AI-generated content was reviewed, tested, and modified by the author before being included in this repository. The author maintained a human-in-the-loop (HITL) workflow, meaning that AI outputs were treated as suggestions and not accepted without verification.
 
 The author remains fully responsible for the design, implementation, and correctness of the final code.
-
-**Further reading:** [Notes on HITL](images/Notes%20on%20HITL.pdf) — Notes on AI and human-in-the-loop concepts.
